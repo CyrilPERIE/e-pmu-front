@@ -1,0 +1,5 @@
+export enum Utilite {
+    APPRENTISSAGE = "APPRENTISSAGE",
+    VALIDATION = "VALIDATION",
+    SIMULATION = "SIMULATION"
+}

@@ -1,0 +1,41 @@
+import { DernierRapportDirect } from "./dernierRapportDirect.js";
+import { DistanceChevalPrecedent } from "./distanceChevalPrecedent.js";
+import { GainsParticipant } from "./gainsParticipant.js";
+
+export interface Participant {
+  nom: string;
+  numPmu: number;
+  age: number;
+  sexe: string;
+  race: string;
+  statut: string;
+  placeCorde: number;
+  oeilleres: string;
+  proprietaire: string;
+  entraineur: string;
+  driver: string;
+  driverChange: boolean;
+  indicateurInedit: boolean;
+  musique: string;
+  nombreCourses: number;
+  nombreVictoires: number;
+  nombrePlaces: number;
+  nombrePlacesSecond: number;
+  nombrePlacesTroisieme: number;
+  gainsParticipant?: GainsParticipant;
+  handicapValeur: number;
+  nomPere: string;
+  nomMere: string;
+  nomPereMere: string;
+  ordreArrivee: number;
+  jumentPleine: boolean;
+  engagement: boolean;
+  supplement: number;
+  handicapPoids: number;
+  poidsConditionMonteChange: boolean;
+  distanceChevalPrecedent?: DistanceChevalPrecedent;
+  dernierRapportDirect?: DernierRapportDirect;
+  urlCasaque: string;
+  allure: string;
+  ordreArriveeEstimee: number | 0;
+}

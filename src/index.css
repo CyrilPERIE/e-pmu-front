@@ -1,24 +1,3 @@
-@font-face {
-  font-family: Quicksand-Bold;
-  src: url("../public/assets/fonts/Quicksand-Bold.ttf");
-}
-
-@font-face {
-  font-family: Quicksand-Light;
-  src: url("../public/assets/fonts/Quicksand-Light.ttf");
-}
-
-@font-face {
-  font-family: Quicksand-Medium;
-  src: url("../public/assets/fonts/Quicksand-Medium.ttf");
-}
-
-@font-face {
-  font-family: Quicksand-Regular;
-  src: url("../public/assets/fonts/Quicksand-Regular.ttf");
-}
-
-@font-face {
-  font-family: Quicksand-SemiBold;
-  src: url("../public/assets/fonts/Quicksand-SemiBold.ttf");
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

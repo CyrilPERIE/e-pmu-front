@@ -1,76 +1,28 @@
-import { Column } from "./ui/Column";
-import NavTab from "./ui/NavTab";
-import { Row } from "./ui/Row";
-import { ReactNode, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { RootState, AppDispatch } from "../redux/store";
-import { Header } from "./Header";
-import { useLocation } from "react-router-dom";
-import { logout } from "../redux/slicers/User";
+import NavBar from "./ui/navbar/navbar";
+import Dashboard from "./ui/dashboard/dashboard";
+import { useSelector } from "react-redux";
+import { selectSelectedCourse } from "../redux/courses/coursesSelectors";
 
-interface Props {
-  children?: ReactNode;
-}
-
-export function Main({ children }: Props) {
-  let { pathname } = useLocation();
-  pathname = pathname.replace("/", "");
-
+const Main: React.FC = () => {
   
-  const user = useSelector((state: RootState) => state.user.user)
-  const dispatch = useDispatch<AppDispatch>();
-
-  useEffect(() => {
-    console.log("useeffect de fou")
-    if(parseInt(user.exp) > Date.now()) dispatch(logout())
-  }, [pathname]);
+  const course = useSelector(selectSelectedCourse)
 
   return (
-    <div className="app">
-      <Column>
-        <Row>
-          <div className="homme-bouton">
-            <img
-              src="/assets/images/(l)ico(r)ne_cheval.png"
-              alt="/assets/images/(l)ico(r)ne_cheval.png"
-            />
-            <p>EPMU</p>
-          </div>
-        </Row>
-        <hr />
-        <Row size={9} className="side-nav-content">
-          <Column>
-            <NavTab
-              text="Dashboard"
-              imgUrl="/assets/images/icone_dashboard.png"
-              path="/dashboard"
-            />
-            <NavTab
-              text="Report"
-              imgUrl="/assets/images/icone_rapport.png"
-              path="/report"
-            />
-            <NavTab
-              text="Stats"
-              imgUrl="/assets/images/icone_stats.png"
-              path="/stats"
-            />
-            <NavTab
-              text="Admin"
-              imgUrl="/assets/images/icone_admin.svg"
-              path="/admin"
-            />
-          </Column>
-        </Row>
-      </Column>
-      <Column size={6}>
-        <Row>
-          <Header name={pathname} />
-        </Row>
-        <Row size={12} className="section">
-          {children}
-        </Row>
-      </Column>
+    <div className="h-screen flex flex-col bg-background-color">
+      <div className="h-[97%] xl:px-[6%] flex">
+        <div className={`flex-[5] h-full ${course ? 'block' : 'hidden'} xl:block`}>
+          <Dashboard />
+        </div>
+        <div className={`flex-[2] h-full ${course ? 'hidden' : 'block'} xl:block`}>
+          <NavBar />
+        </div>
+      </div>
+      <div className="flex flex-grow justify-end gap-4 bg-black">
+          <div className="text-primary-color">linkedin</div>
+          <div className="text-primary-color">github</div>
+      </div>
     </div>
   );
-}
+};
+
+export default Main;

@@ -6,3 +6,13 @@ export interface Cheval  {
     optimizedEnsembleClassifier: string,
     ordreArrivee: string,
 }
+
+export enum NavBarType {
+    COURSES = "Courses",
+    REUNIONS = "Réunions",
+}
+
+export enum DisplayType {
+    DASHBOARD = "Dashboard",
+    NAVBAR = "NavBar",
+}
