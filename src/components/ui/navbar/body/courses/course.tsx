@@ -46,7 +46,7 @@ const Course: React.FC<CourseProps> = ({id, ...course}) => {
                 <div className="flex justify-between">
                     <div>
                         <div><h2>{reunion?.hippodrome?.libelleCourt}</h2></div>
-                        <div><h2>{course.libelle}</h2></div>
+                        <div><h2>{course.libelleCourt}</h2></div>
                     </div>
                     <div>
                         <p>{isOver(course) ? "Définitive" : date_to_hhhmm(course.heureDepart)}</p>
