@@ -8,11 +8,7 @@ const Participants = () => {
 
     const assignRankings = (participants: ParticipantProps[]) => {
             const sortedParticipants = [...participants].sort((a, b) => a.ordreArriveeEstimee - b.ordreArriveeEstimee);
-            if(!participants[0].ordreArriveeEstimee) 
-                return sortedParticipants.map((participant, index) => ({
-                ...participant,
-                ordreArriveeEstimee: 0
-                }));
+            
             return sortedParticipants.map((participant, index) => ({
               ...participant,
               ordreArriveeEstimee: index + 1

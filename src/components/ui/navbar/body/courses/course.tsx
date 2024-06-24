@@ -14,8 +14,12 @@ import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import AutorenewIcon from '@mui/icons-material/Autorenew';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+import { Participant } from "../../../../../common/models/participant";
 
-export type CourseProps = mCourse & {id: number}
+export type CourseProps = mCourse & {
+    id: number
+    participants: Participant[]
+}
 
 const Course: React.FC<CourseProps> = ({id, ...course}) => {
     
@@ -30,27 +34,30 @@ const Course: React.FC<CourseProps> = ({id, ...course}) => {
         if(navBarView === NavBarType.COURSES) dispatch(resetReunion)
     }
 
-    // const isWaitingForResult = (course: mCourse): boolean => {
-    //     if (!course.chevaux) return false;
-    //     return course.chevaux.some(cheval => !cheval.ordreArrivee);
-    // }
+    const isWaitingForResult = (participants: Participant[]): boolean => {
+        if (!participants) {
+            return false;
+        }
+        console.log(course.participants.some(participant => !participant.ordreArrivee))
+        return !course.participants.some(participant => !participant.ordreArrivee);
+    }
 
-    // const isPlaceWin = (course: mCourse): boolean => {
-    //     if (!course.chevaux || course.chevaux.length === 0) return false;
+    const isPlaceWin = (participants: Participant[]): boolean => {
+        if (!participants || participants.length === 0) return false;
         
-    //     // Trouver le cheval avec ordreArriveeEstime de 1
-    //     const estimatedWinner = course.chevaux.find(cheval => cheval.ordreArriveeEstime === 1);
-    //     if (!estimatedWinner) return false;
+        // Trouver le cheval avec ordreArriveeEstime de 1
+        const estimatedWinner = participants.find(participant => participant.ordreArriveeEstimee === 1);
+        if (!estimatedWinner) return false;
 
-    //     const requiredPositions = course.chevaux.length >= 7 ? [1, 2, 3] : [1, 2];
+        const requiredPositions = participants.length >= 7 ? [1, 2, 3] : [1, 2];
         
-    //     return requiredPositions.includes(estimatedWinner.ordreArrivee);
-    // }
+        return requiredPositions.includes(estimatedWinner.ordreArrivee);
+    }
 
     const whichImage = () => {
         if(course.specialite !== 'PLAT') return renderContent('')
-        // else if(isWaitingForResult(course)) return renderContent('attente')
-        // else if(isPlaceWin(course)) return renderContent('gagne')
+        else if(isPlaceWin(course.participants)) return renderContent('gagne')
+        else if(isWaitingForResult(course.participants)) return renderContent('attente')
         else return renderContent('perdu')
     }
 
@@ -111,7 +118,7 @@ const Course: React.FC<CourseProps> = ({id, ...course}) => {
                         </div>
                     </div>       
                     <div>
-                        <h3 className="text-secondary-color-darker">{getSpecialiteValue(course.specialite)} - {course.distance}m - {course.chevaux?.length} partants</h3>
+                        <h3 className="text-secondary-color-darker">{getSpecialiteValue(course.specialite)} - {course.distance}m - {course.participants.length} partants</h3>
                     </div>         
                 </div>
             </div>
