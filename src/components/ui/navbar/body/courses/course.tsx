@@ -38,19 +38,19 @@ const Course: React.FC<CourseProps> = ({id, ...course}) => {
         if (!participants) {
             return false;
         }
-        console.log(course.participants.some(participant => !participant.ordreArrivee))
-        return !course.participants.some(participant => !participant.ordreArrivee);
+        return !participants[0].ordreArriveeEstimee
     }
 
     const isPlaceWin = (participants: Participant[]): boolean => {
         if (!participants || participants.length === 0) return false;
-        
-        // Trouver le cheval avec ordreArriveeEstime de 1
-        const estimatedWinner = participants.find(participant => participant.ordreArriveeEstimee === 1);
+
+        const estimatedWinner = participants.reduce((max, participant) => 
+            participant.ordreArriveeEstimee > max.ordreArriveeEstimee ? participant : max
+        );
         if (!estimatedWinner) return false;
 
         const requiredPositions = participants.length >= 7 ? [1, 2, 3] : [1, 2];
-        
+
         return requiredPositions.includes(estimatedWinner.ordreArrivee);
     }
 
