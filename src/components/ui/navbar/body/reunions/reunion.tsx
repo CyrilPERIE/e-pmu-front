@@ -65,7 +65,7 @@ const Reunion: React.FC<ReunionProps> = ({id, ...reunion}) => {
             <div className="m-2">
                 <div className="px-2">
                 {selectedReunion?.id === id ? courses.map((course: CourseProps) => (
-                    <Course key={course.id} {...course} />
+                        <Course key={course.id} {...course} />
                     ))
                     :
                     <></>

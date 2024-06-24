@@ -37,3 +37,7 @@ h3 {
 ::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(to bottom, transparent 12%, #555 12%, #555 95%, transparent 95%);
 }
+
+.MuiAlert-message {
+  width: 100%;
+}

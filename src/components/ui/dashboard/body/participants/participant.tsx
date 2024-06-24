@@ -11,7 +11,7 @@ const Participant: React.FC<ParticipantProps> = ({id, ...participant}) => {
     return (
         <tr className="border-b">
             <td className="p-2 px-3">
-                <div className="flex gap-2 bg-secondary-color py-2 px-1 rounded-lg items-center justify-center">
+                <div className={`flex gap-2 ${participant.ordreArriveeEstimee === 1 ? 'bg-yellow-200' : 'bg-secondary-color'} py-2 px-1 rounded-lg items-center justify-center`}>
                     <div>{participant.numPmu}</div>
                     <div className="w-[22px]"><img draggable='false' src={participant.urlCasaque} alt="ulr_casaque" /></div>
                 </div>
@@ -38,7 +38,7 @@ const Participant: React.FC<ParticipantProps> = ({id, ...participant}) => {
             </td>
             <td>
                 <div className="flex flex-col items-center">
-                    <div>{participant.ordreArriveeEstimee === 0 ? participant.ordreArriveeEstimee : " - "} / {participant.ordreArrivee ? participant.ordreArrivee: " - "}</div>
+                    <div>{participant.ordreArriveeEstimee ? participant.ordreArriveeEstimee : " .. "} / {participant.ordreArrivee ? participant.ordreArrivee: " - "}</div>
                 </div>
             </td>
         </tr>

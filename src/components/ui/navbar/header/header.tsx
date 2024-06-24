@@ -7,6 +7,7 @@ import { resetCourses } from "../../../../redux/courses/coursesSlice";
 import { setNavBarViewCourses, setNavBarViewReunions } from "../../../../redux/display/displaySlice";
 import { selectNavBarView } from "../../../../redux/display/displaySelectors";
 import { NavBarType } from "../../../../services/Chevaux/types";
+import InfoCourse from "../info/infoCourses";
 
 const NavBarHeader = () => {
 
@@ -49,10 +50,10 @@ const NavBarHeader = () => {
                     <div><h1>{date_to_string(selectedDate)}</h1></div>
                 </div>
                 <div className="flex gap-3">
-                    <div className="bg-secondary-color p-1 rounded-[14px] flex w-[39px] h-[42px] cursor-pointer justify-center items-center" onClick={decreaseDate}>
+                    <div className="bg-secondary-color hover:bg-secondary-color-darker p-1 rounded-[14px] flex w-[39px] h-[42px] cursor-pointer justify-center items-center" onClick={decreaseDate}>
                             <img className="h-4" src="/assets/images/left-arrow.png" alt="Left Arrow" />
                     </div>
-                    <div className="bg-secondary-color p-1 rounded-[14px] flex w-[39px] h-[42px] cursor-pointer justify-center items-center" onClick={increaseDate}>
+                    <div className="bg-secondary-color hover:bg-secondary-color-darker p-1 rounded-[14px] flex w-[39px] h-[42px] cursor-pointer justify-center items-center" onClick={increaseDate}>
                             <img className="h-4" src="/assets/images/right-arrow.png" alt="Left Arrow" />
                     </div>
                 </div>
@@ -60,17 +61,18 @@ const NavBarHeader = () => {
             <div className="flex justify-center">
                 <div className="flex p-2 px-5 bg-secondary-color max-w-fit rounded-3xl items-center">
                     <div className={`${navBarView === NavBarType.COURSES ? 'bg-primary-color text-foreground-color' : 'text-secondary-color-darker'} p-1 px-5 rounded-full`}>
-                        <button onClick={switchNavBarToCourses}>
+                        <button onClick={switchNavBarToCourses} disabled={navBarView === NavBarType.COURSES}>
                             Courses
                         </button>
                     </div>
                     <div className={`${navBarView === NavBarType.REUNIONS ? 'bg-primary-color text-foreground-color' : 'text-secondary-color-darker'} p-1 px-5 rounded-full`}>
-                        <button onClick={switchNavBarToReunions}>
+                        <button onClick={switchNavBarToReunions} disabled={navBarView === NavBarType.REUNIONS}>
                             Réunions
                         </button>
                 </div>
                 </div>
             </div>
+            <InfoCourse />
         </div>
     )
 }
