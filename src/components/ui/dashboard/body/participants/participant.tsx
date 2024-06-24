@@ -38,7 +38,7 @@ const Participant: React.FC<ParticipantProps> = ({id, ...participant}) => {
             </td>
             <td>
                 <div className="flex flex-col items-center">
-                    <div>{participant.ordreArriveeEstimee ? participant.ordreArriveeEstimee : " .. "} / {participant.ordreArrivee ? participant.ordreArrivee: " - "}</div>
+                    <div>{participant.ordreArriveeEstimee ? participant.ordreArriveeEstimee : " _ "} / {participant.ordreArrivee ? participant.ordreArrivee: " - "}</div>
                 </div>
             </td>
         </tr>

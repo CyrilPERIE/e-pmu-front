@@ -7,6 +7,13 @@ const Participants = () => {
     const participants = useSelector(selectParticipants)
 
     const assignRankings = (participants: ParticipantProps[]) => {
+
+            if(!participants[0]?.ordreArriveeEstimee) 
+                return participants.map((participant, index) => ({
+                    ...participant,
+                    ordreArriveeEstimee: 0
+                  }));
+
             const sortedParticipants = [...participants].sort((a, b) => a.ordreArriveeEstimee - b.ordreArriveeEstimee);
             
             return sortedParticipants.map((participant, index) => ({
