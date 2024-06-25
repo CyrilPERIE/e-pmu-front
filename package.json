@@ -17,6 +17,7 @@
     "@types/react-dom": "^18.0.10",
     "axios": "^1.2.2",
     "bcryptjs": "^2.4.3",
+    "dotenv": "^16.4.5",
     "encrypt-storage": "^2.12.16",
     "jwt-decode": "^3.1.2",
     "moment": "^2.29.4",
