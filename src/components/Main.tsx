@@ -2,6 +2,7 @@ import NavBar from "./ui/navbar/navbar";
 import Dashboard from "./ui/dashboard/dashboard";
 import { useSelector } from "react-redux";
 import { selectSelectedCourse } from "../redux/courses/coursesSelectors";
+import { useState } from "react";
 
 const Main: React.FC = () => {
   
@@ -9,6 +10,9 @@ const Main: React.FC = () => {
 
   return (
     <div className="h-screen flex flex-col bg-background-color select-none">
+      <div className="cursor-pointer text-accent-color bg-black p-1 flex uppercase justify-center font-bold">
+        NAS en court de montage, ma vidéo de présentation est disponible <a className='underline' href='https://youtu.be/qixCdcYSn8E' target="_blank">{`>>> ici <<<`}</a>
+      </div>
       <div className="h-[97%] xl:px-[6%] flex">
         <div className={`flex-[5] h-full ${course ? 'block' : 'hidden'} xl:block`}>
           <Dashboard />
